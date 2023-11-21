@@ -1,15 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Search, ShoppingBasket } from "@mui/icons-material";
 import "./Header.css";
 
 const Header = () => {
+  const basket = useSelector((state) => state.basket.products);
+
   return (
     <div className="header">
-      <img
-        className="header__logo"
-        src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-        alt="amazon logo"
-      />
+      <Link to="/">
+        <img
+          className="header__logo"
+          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+        />
+      </Link>
 
       <div className="header__search">
         <input className="header__searchInput" type="text" />
@@ -19,7 +23,7 @@ const Header = () => {
       <div className="header__nav">
         <div className="header__option">
           <span className="header__optionLineOne">Hello Guest</span>
-          <span className="header__optionLineTwo">Sign In</span>
+          <span className="header__optionLineTwo">Sign in</span>
         </div>
 
         <div className="header__option">
@@ -32,10 +36,14 @@ const Header = () => {
           <span className="header__optionLineTwo">Prime</span>
         </div>
 
-        <div className="header__optionBasket">
-          <ShoppingBasket />
-          <span className="header__optionLineTwo header__basketCount">0</span>
-        </div>
+        <Link to="/checkout">
+          <div className="header__optionBasket">
+            <ShoppingBasket />
+            <span className="header__optionLineTwo header__basketCount">
+              {basket?.length}
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );
