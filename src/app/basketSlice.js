@@ -4,7 +4,6 @@ const basketsSlice = createSlice({
   name: "search",
   initialState: {
     products: [],
-    user: null,
   },
   reducers: {
     addbasketElement(state, action) {
